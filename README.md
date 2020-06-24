@@ -13,3 +13,25 @@ This repository reflects a workaround as described by @blagerweij in [this upstr
 1. Starts of `docker:latest`
 2. Downloads & install glibc libraries for Apline from https://github.com/sgerrand/alpine-pkg-glibc/
 3. Downloads & insstalls `awscli´ using the method described in https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
+
+## Example usage for illustration: `.gitlab-ci.yml`
+
+A synthetical example pulling a docker image by SHA1 from gitlab repository and pushing it to an ECR instance. 
+
+```yaml
+.deploy:api:ecr-image:
+  image: bentolor/docker-dind-awscli
+  services:
+    - name: docker:dind 
+  stage: publish-aws
+  script:
+    # Fetch local docker image, rename & push to target environment
+    - docker info
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN gitlab.foo.bar:4567
+    - docker pull $LOCAL_IMAGE_NAME:$CI_COMMIT_SHA
+    - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REPOSITORY_HOST_API
+    - docker tag $LOCAL_IMAGE_NAME:$CI_COMMIT_SHA $REPOSITORY_HOST_API/myservice:latest
+    - docker push $REPOSITORY_HOST_API/myservice:latest
+  only:
+  - master
+```
