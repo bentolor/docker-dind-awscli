@@ -19,7 +19,7 @@ This repository reflects a workaround as described by @blagerweij in [this upstr
 A synthetical example pulling a docker image by SHA1 from gitlab repository and pushing it to an ECR instance. 
 
 ```yaml
-.deploy:api:ecr-image:
+deploy:api:ecr-image:
   image: bentolor/docker-dind-awscli
   services:
     - name: docker:dind 
