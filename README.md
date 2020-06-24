@@ -1,5 +1,7 @@
 # Docker for Docker-in-Docker (`dind`) with Amazon AWS CLI `awscli`
 
+**`bentolor/docker-dind-awscli` is a drop-in replacement for `docker:stable` in situations where you'd also want to use `awscli` at the same time.**
+
 If you face the simple problem that you want to do a simple `aws ecr set-login-password … | docker login …` inside your Docker-based CI pipeline, you might stumble over the following problems:
 
 * The official `docker:stable` Image does not have Python, `pip` or the `aws` tools installed
