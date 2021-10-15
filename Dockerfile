@@ -1,4 +1,4 @@
-FROM docker:dind
+FROM docker
 
 ENV GLIBC_VER=2.34-r0
 
@@ -30,8 +30,8 @@ RUN apk --update-cache add \
         curl \
     && rm glibc-${GLIBC_VER}.apk \
     && rm glibc-bin-${GLIBC_VER}.apk \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
+    && docker --version \
+    && aws --version
 
 CMD /bin/bash
-RUN docker --version
-RUN aws --version

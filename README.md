@@ -1,8 +1,8 @@
 # Docker for Docker-in-Docker (`dind`) with Amazon AWS CLI v2.x `awscli`
 
-**Important note:** Since 2021-10-15 this image no longer is based on the [no longer maintained `docker:stable` tag (Docker v19)](https://github.com/docker-library/docker/issues/301) but now is based on the `docker:dind` tag. If this breaked your build you might quick-resort into using `bentolor/docker-dind-awscli:2.2.36` instead of latest.
-
 **`bentolor/docker-dind-awscli` is a drop-in replacement for `docker:stable` in situations where you'd also want to use `awscli` at the same time. This addresses the new awscli v2.** 
+
+_**Important note:** Since 2021-10-15 this image no longer is based on the [no longer maintained `docker:stable` tag (Docker v19)](https://github.com/docker-library/docker/issues/301) but now is based on the `docker:latest` tag. If this breaked your build you might quick-resort into using `bentolor/docker-dind-awscli:2.2.36`._
 
 If you face the simple problem that you want to do a simple `aws ecr set-login-password … | docker login …` inside your Docker-based CI pipeline, you might stumble over the following problems:
 
