@@ -33,4 +33,5 @@ RUN apk --update-cache add \
     && rm -rf /var/cache/apk/*
 
 CMD /bin/bash
+RUN docker --version
 RUN aws --version
