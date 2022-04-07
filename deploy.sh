@@ -2,7 +2,8 @@
 function deploy_image(){
     cluster_name=$1
     service_name=$2
-    NEW_IMAGE=$3
+    TASK_DEF_FAMILY_NAME=$3
+    NEW_IMAGE=$4
     TASK_ARN=$(aws ecs describe-services --service $service_name --cluster $cluster_name | jq ".services[].taskDefinition" | sed -e 's/^"//' -e 's/"$//')
     aws ecs describe-task-definition --task-definition $TASK_ARN>describe-task.json
     sed -i -e "s|\"image\".*|\"image\":\"$NEW_IMAGE\"\,|g" describe-task.json
