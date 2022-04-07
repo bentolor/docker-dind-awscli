@@ -34,5 +34,5 @@ RUN apk --update-cache add \
     && rm -rf /var/cache/apk/* \
     && docker --version \
     && aws --version
-
-CMD /bin/bash
+ADD deploy.sh deploy.sh
+CMD source deploy.sh && /bin/bash
