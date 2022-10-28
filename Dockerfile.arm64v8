@@ -1,0 +1,46 @@
+FROM docker
+
+ARG GLIBC_VERSION=2.31-r0
+ARG GLIBC_ARCH=aarch64
+
+# install glibc compatibility for alpine
+RUN apk --update-cache add \
+        binutils \
+        curl \
+        groff \
+        bash \
+        zlib \
+    && sed -i 's/ash/bash/g' /etc/passwd \
+    && GLIBC_URL='https://github.com/SatoshiPortal/alpine-pkg-glibc/releases/download' \
+    && GLIBC_KEY="${GLIBC_URL}/${GLIBC_VERSION}/cyphernode@satoshiportal.com.rsa.pub" \
+    && curl -sL ${GLIBC_KEY} -o /etc/apk/keys/cyphernode@satoshiportal.com.rsa.pub \
+    && curl -sL ${GLIBC_URL}/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}-${GLIBC_ARCH}.apk -o glibc-${GLIBC_VERSION}.apk \
+    && curl -sL ${GLIBC_URL}/${GLIBC_VERSION}/glibc-bin-${GLIBC_VERSION}-${GLIBC_ARCH}.apk -o glibc-bin-${GLIBC_VERSION}.apk \
+    && curl -sL ${GLIBC_URL}/${GLIBC_VERSION}/glibc-i18n-${GLIBC_VERSION}-${GLIBC_ARCH}.apk -o glibc-i18n-${GLIBC_VERSION}.apk \
+    && apk del libc6-compat \
+    && apk add \
+        glibc-${GLIBC_VERSION}.apk \
+        glibc-bin-${GLIBC_VERSION}.apk \
+        glibc-i18n-${GLIBC_VERSION}.apk \
+    && /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8 \
+    && apk del --purge glibc-i18n \
+    && curl -sL https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip -o awscliv2.zip \
+    && unzip -q awscliv2.zip \
+    && aws/install \
+    && rm -rf \
+        awscliv2.zip \
+        aws \
+        /usr/local/aws-cli/v2/*/dist/aws_completer \
+        /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index \
+        /usr/local/aws-cli/v2/*/dist/awscli/examples \
+    && apk --no-cache del \
+        binutils \
+        curl \
+    && rm glibc-${GLIBC_VERSION}.apk \
+    && rm glibc-bin-${GLIBC_VERSION}.apk \
+    && rm glibc-i18n-${GLIBC_VERSION}.apk \
+    && rm -rf /var/cache/apk/* \
+    && docker --version \
+    && aws --version
+
+CMD /bin/bash
