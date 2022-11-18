@@ -14,10 +14,11 @@ RUN apk --update-cache add \
     && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk \
     && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-i18n-${GLIBC_VER}.apk \
     && apk del libc6-compat \
-    && apk add \
+    && apk add --force-overwrite \
         glibc-${GLIBC_VER}.apk \
         glibc-bin-${GLIBC_VER}.apk \
         glibc-i18n-${GLIBC_VER}.apk \
+    && apk fix --force-overwrite alpine-baselayout-data \
     && curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
     && /usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8 \
     && apk del --purge glibc-i18n \
