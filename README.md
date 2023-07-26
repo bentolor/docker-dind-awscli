@@ -17,7 +17,7 @@ This repository reflects a workaround as described by @blagerweij in [this upstr
 
 1. Starts of `docker:latest`
 2. Downloads & install glibc libraries for Apline from https://github.com/sgerrand/alpine-pkg-glibc/
-3. Downloads & insstalls `awscli´ using the method described in https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
+3. Downloads & insstalls `awscli` using the method described in https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 
 ## Example: Building & Pushing Containers inside Gitlab CI via `.gitlab-ci.yml`
 
