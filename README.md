@@ -44,7 +44,7 @@ Note: Using the `services`-Tag we start a separate _dind_ container running the 
 
 
 ## Upgrade Notes
-Since 2021-10-15 this image no longer is based on the [no longer maintained `docker:stable` tag (Docker v19)](https://github.com/docker-library/docker/issues/301) but now is based on the `docker:latest` tag. If this breaked your build you might quick-resort into using `bentolor/docker-dind-awscli:2.2.36`.
+Since 2021-10-15 this image no longer is based on the [no longer maintained `docker:stable` tag (Docker v19)](https://github.com/docker-library/docker/issues/301) but now is based on the `docker:latest` tag. If this broke your build you might quick-resort into using `bentolor/docker-dind-awscli:2.2.36`.
 
 ## docker:dind vs. docker:latest
 Please note, that while this image is called `docker-dind-awscli`, the `bentolor/docker-dind-awscli` image itself **is not meant as replacement for `docker:dind`**, but for `docker:latest`.
