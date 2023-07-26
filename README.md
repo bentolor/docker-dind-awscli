@@ -1,7 +1,8 @@
 # Docker with Amazon AWS CLI v2.x `awscli`, i.e. for Docker-in-Docker (`dind`)
 
-**`bentolor/docker-dind-awscli` is a drop-in replacement for the `docker` image in situations where you'd also want to use `awscli` at the same time.**
-Similarily `bentolor/docker-dind-awscli:dind` is a drop-in replacement for `docker:dind` augmented by  `awscli`. Read section "docker:dind vs. docker:latest"
+**`bentolor/docker-dind-awscli` is a drop-in replacement for the `docker` image in situations where you'd also want to use `awscli` at the same time.**     
+On similar lines `bentolor/docker-dind-awscli:dind` is a drop-in replacement for `docker:dind` augmented by  `awscli`.     
+Refer to section _"docker:dind vs. docker:latest"_ for details on the differences.
 
 ---
 
