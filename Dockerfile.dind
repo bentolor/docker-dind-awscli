@@ -1,4 +1,4 @@
-FROM docker:dind
+FROM docker:24.0.3-dind
 
 ARG GLIBC_VER=2.34-r0
 

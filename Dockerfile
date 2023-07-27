@@ -1,4 +1,4 @@
-FROM docker
+FROM docker:24.0.3
 
 ARG GLIBC_VER=2.34-r0
 
