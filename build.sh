@@ -17,6 +17,9 @@ sudo docker tag bentolor/docker-dind-awscli:latest bentolor/docker-dind-awscli:$
 #echo "Tagging bentolor/docker-dind-awscli:dind-$VER-$DOCKERVER"
 sudo docker tag bentolor/docker-dind-awscli:dind bentolor/docker-dind-awscli:$VER-dind-$DOCKERVER
 
+echo "About to push to Docker Hub"
+sleep 5
+
 sudo docker push bentolor/docker-dind-awscli:$VER-docker-$DOCKERVER
 sudo docker push bentolor/docker-dind-awscli:$VER-dind-$DOCKERVER
 sudo docker push bentolor/docker-dind-awscli:latest
