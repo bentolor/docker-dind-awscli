@@ -1,7 +1,7 @@
 #!/bin/sh
 set -exu
-sudo docker buildx build --platform linux/amd64 -t bentolor/docker-dind-awscli:latest "."
-sudo docker buildx build --platform linux/amd64 -t bentolor/docker-dind-awscli:dind -f Dockerfile.dind "."
+sudo docker buildx build --platform linux/amd64 $@ -t bentolor/docker-dind-awscli:latest "."
+sudo docker buildx build --platform linux/amd64 $@ -t bentolor/docker-dind-awscli:dind -f Dockerfile.dind "."
 
 FULLVER=$(sudo docker run -t --rm  bentolor/docker-dind-awscli aws --version)
 #echo "AWS CLI complete versionstring: $FULLVER"
